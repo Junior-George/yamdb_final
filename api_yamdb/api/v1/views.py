@@ -1,23 +1,21 @@
 import random
 from string import digits
 
-from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
-from rest_framework import viewsets, status
-from rest_framework import mixins
-from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, mixins, status, viewsets
 from rest_framework.decorators import action, api_view
-from rest_framework import filters
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
-
-from reviews.models import Title, Category, Genre, Comment, Review
+from reviews.models import Category, Comment, Genre, Review, Title
 from users.models import User
-from .permissions import IsAdmin, ReadOnly, PermissionForReviewComment
-from .serializers import (TitleGetSerializer, TitlePostSerializer,
-                          CategorySerializer, GenreSerializer,
-                          ReviewSerializer, CommentSerializer,
+
+from .permissions import IsAdmin, PermissionForReviewComment, ReadOnly
+from .serializers import (CategorySerializer, CommentSerializer,
+                          GenreSerializer, ReviewSerializer,
+                          TitleGetSerializer, TitlePostSerializer,
                           UserCreateSerializer, UserSerializer)
 
 
@@ -118,8 +116,7 @@ class TitleViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return TitleGetSerializer
-        else:
-            return TitlePostSerializer
+        return TitlePostSerializer
 
 
 class ReviewViewSet(viewsets.ModelViewSet):

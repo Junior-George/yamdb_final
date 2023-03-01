@@ -1,8 +1,8 @@
-from django.core.management.base import BaseCommand
-from reviews.models import Title, Category, Genre, Comment, Review
-from users.models import User
 import csv
 
+from django.core.management.base import BaseCommand
+from reviews.models import Category, Comment, Genre, Review, Title
+from users.models import User
 
 MODEL_FILE = {
     Genre: 'static/data/genre.csv',

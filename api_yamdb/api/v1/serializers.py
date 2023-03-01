@@ -4,9 +4,7 @@ from django.db.models import Avg
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator
-
-from reviews.models import Title, Genre, Category, Review, Comment
-from users.models import User
+from reviews.models import Category, Comment, Genre, Review, Title, User
 
 START_SCORE = 1
 END_SCORE = 10
@@ -33,10 +31,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'last_name', 'bio', 'role')
 
     def validate_role(self, role):
-        request_user = self.context['request'].user
-        user = User.objects.get(username=request_user)
-        if user.is_user:
-            role = user.role
         return role
 
 

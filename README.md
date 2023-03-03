@@ -43,6 +43,6 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 * * Остановку контейнеров не обходимо выполнять в директории с файлом docker-compose.yaml 
 
-* Команда для остановки контенеров
+* Команда для остановки контенеров 
 
 docker-compose down -v

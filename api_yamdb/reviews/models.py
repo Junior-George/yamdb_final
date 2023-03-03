@@ -53,7 +53,7 @@ class Review(models.Model):
         Title, on_delete=models.CASCADE, related_name='reviews')
 
     def __str__(self):
-        return self.text[:72]
+        return self.text
 
     class Meta:
         constraints = [
@@ -75,4 +75,4 @@ class Comment(models.Model):
         Review, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
-        return self.text[:72]
+        return self.text
